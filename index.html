@@ -3,47 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RICK AND MORTY</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>God of War Raffle</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- This links to the Bootstrap CSS library, which provides pre-made styles to use. -->
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- This links to the jQuery library, which simplifies JavaScript programming. -->
 </head>
-<header>   <h1>RICK AND MORTY IDEAS</h1>
-
-
-
-
-</header>
 <body>
+    <!-- The body tag contains all the content that will be displayed on the webpage. -->
+
+    <h2>Enter the Raffle</h2>
+    <!-- This is heading. -->
+
     <div class="container">
-     
-        <table class="table" id="myTable">
-            <thead>
-                <tr>
-                    <th>NAME</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>John Doe</td>
-                    <td>john@example.com</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2>Add Data</h2>
-        <form id="myForm">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" required>
+        <!-- This creates a container for the content. Bootstrap uses this for alignment and padding. -->
+
+        <h1>God of War Raffle</h1>
+        <!-- This is another heading. -->
+
+        <table class="table" id="raffleEntries">
+            <!-- This creates a table. The 'table' class applies Bootstrap styling, and the id allows us to reference it in the JavaScript. -->
+
+            <form id="raffleForm">
+                <!-- This creates a form. The id allows us to reference it in the JavaScript. -->
+
+                <div class="form-group">
+                    <!-- This groups form controls for better styling. -->
+
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                    <!-- This creates a text input field. The 'form-control' class applies Bootstrap styling. -->
+
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <!-- This creates an email input field. It will validate that the input is in the form of an email address. -->
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <!-- This creates a submit button. The 'btn' and 'btn-primary' classes apply Bootstrap styling. -->
+                </form>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
     </div>
-  <script src="script.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#raffleForm").on("submit", function(event){
+                event.preventDefault();
+                let name = $("#name").val();
+                let email = $("#email").val();
+                $("#raffleEntries tbody").append("<tr><td>" + name + "</td><td>" + email + "</td></tr>");
+                $("#name").val('');
+                $("#email").val('');
+                alert("Thank you for entering the raffle, " + name + "! Good luck!");
+            });
+        });
+    </script>
+    <!-- This script uses jQuery to handle the form submission. It prevents the default form submission, gets the values of the input fields, appends a new row to the table, clears the input fields, and shows an alert. -->
 </body>
 </html>
